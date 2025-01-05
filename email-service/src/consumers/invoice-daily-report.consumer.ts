@@ -22,7 +22,7 @@ export class InvoiceDailyReportConsumer {
 
     this.emailService.sendEmail(
       'a_rahmani82@yahoo.com',
-      `daily sales report, ${new Date().toLocaleDateString()}`,
+      `daily sales report`,
       totalSales + ',' + JSON.stringify(itemSummary),
     );
   }
