@@ -21,25 +21,35 @@ This repository contains two services built with NestJS:
    ```
 
 2. **Install Dependencies**
+
    cd InvoiceAndReport/email-service
+
    npm install
 
    cd InvoiceAndReport/invoice-service
+
    npm install
 
 3. **Run the Services**
 
    InvoiceAndReport/email-service
+
    npm run start
 
    cd InvoiceAndReport/invoice-service
+
    npm run start
 
 4. **Run the tests**
+
    InvoiceAndReport/email-service
+
    npm test
+
    npm run test:e2e
 
    cd InvoiceAndReport/invoice-service
+
    npm test
+
    npm run test:e2e
