@@ -18,8 +18,7 @@ export class InvoicesService {
   }
 
   async createInDatabase(invoiceDto: CreateInvoiceDto): Promise<Invoice> {
-    const invoice = new this.invoiceModel(invoiceDto);
-    return invoice.save();
+    return await this.invoiceModel.create(invoiceDto);
   }
 
   async findById(id: string): Promise<Invoice> {

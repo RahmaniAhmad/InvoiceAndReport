@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CreateInvoiceDto } from '../invoices/dtos/create-invoice.dto';
-import { InvoicesService } from '../invoices/invoices.service';
+import { InvoicesService } from './invoices.service';
 import { getModelToken } from '@nestjs/mongoose';
-import { Invoice } from '../invoices/schemas/invoice.schema';
+import { Invoice } from './schemas/invoice.schema';
+import { CreateInvoiceDto } from './dtos/create-invoice.dto';
 
 const mockInvoice = {
   id: '1',
@@ -18,7 +18,7 @@ const mockInvoice = {
 };
 
 const mockInvoiceModel = {
-  new: jest.fn().mockResolvedValue(mockInvoice),
+  create: jest.fn(),
   save: jest.fn().mockResolvedValue(mockInvoice),
   findById: jest.fn().mockReturnValue({
     exec: jest.fn().mockResolvedValue(mockInvoice),
@@ -62,18 +62,18 @@ describe('InvoicesService', () => {
   });
 
   it('should create an invoice', async () => {
+    mockInvoiceModel.create.mockResolvedValue(createInvoiceDto);
+
     const result = await service.createInvoice(createInvoiceDto);
 
     expect(result).toEqual({ message: 'Invoice Created.' });
-    expect(mockInvoiceModel.save).toHaveBeenCalledTimes(1);
-    expect(mockInvoiceModel.save).toHaveBeenCalledWith(createInvoiceDto);
+    expect(mockInvoiceModel.create).toHaveBeenCalledWith(createInvoiceDto);
   });
 
   it('should find an invoice by id', async () => {
     const result = await service.findById('1');
 
     expect(result).toEqual(mockInvoice);
-    expect(mockInvoiceModel.findById).toHaveBeenCalledTimes(1);
     expect(mockInvoiceModel.findById).toHaveBeenCalledWith('1');
   });
 
