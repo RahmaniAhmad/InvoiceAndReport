@@ -10,6 +10,7 @@ This repository contains two services built with NestJS:
 - [Setup Instructions](#setup-instructions)
 - [How to Run the Services](#how-to-run-the-services)
 - [Running Tests](#running-tests)
+- [Environment Variables](#environment-variables)
 
 ## Setup Instructions
 
@@ -53,3 +54,11 @@ This repository contains two services built with NestJS:
    npm test
 
    npm run test:e2e
+
+5. **Environment Variables**
+
+   For Email Service (Mailgun):
+
+   MAILGUN_API_KEY: Your Mailgun API key.
+
+   MAILGUN_DOMAIN: Your Mailgun domain (e.g., yourdomain.com).
