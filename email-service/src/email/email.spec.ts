@@ -61,8 +61,12 @@ describe('EmailService', () => {
   it('should throw error if sending email fails', async () => {
     mailgunClient.messages.create.mockRejectedValue(new Error('API Error'));
 
-    await expect(
-      emailService.sendEmail('test@example.com', 'Test Subject', 'Test Body'),
-    ).rejects.toThrow('Failed to send email');
+    const result = await emailService.sendEmail(
+      'test@example.com',
+      'Test Subject',
+      'Test Body',
+    );
+
+    expect(result).toBe('Failed to send email');
   });
 });

@@ -15,10 +15,12 @@ export class EmailService {
     });
   }
 
-  async sendEmail(to: string, subject: string, text: string): Promise<void> {
+  async sendEmail(to: string, subject: string, text: string): Promise<string> {
     try {
+      console.log('to: ', to);
       console.log('Subject: ', subject);
       console.log('Text: ', text);
+      //we should send email here
       const response = await this.mailgunClient.messages.create(
         process.env.MAILGUN_DOMAIN,
         {
@@ -28,11 +30,9 @@ export class EmailService {
           text,
         },
       );
-
-      console.log('Email sent:', response);
     } catch (error) {
       console.error('Error sending email:', error);
-      throw new Error('Failed to send email');
+      return 'Failed to send email';
     }
   }
 }
